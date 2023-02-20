@@ -12,10 +12,12 @@ namespace Livroteria_back.Data
         }
 
         public DbSet<Livro>? Livros { get; set; }
+        public DbSet<Autor> Autores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new LivroMap());
+            modelBuilder.ApplyConfiguration(new AutorMap());
 
             base.OnModelCreating(modelBuilder);
         }

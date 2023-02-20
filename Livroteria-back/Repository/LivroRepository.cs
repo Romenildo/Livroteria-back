@@ -28,7 +28,7 @@ namespace Livroteria_back.Repository
         public async Task<List<LivroDto>> BuscarTodosLivros()
         {
             return await _dbcontext.Livros
-                   .Select(x => new LivroDto {Titulo = x.Titulo})
+                   .Select(x => new LivroDto {Id = x.Id, Titulo = x.Titulo, SubTitulo = x.SubTitulo, Edicao = x.Edicao, Resumo = x.Resumo, Editora = x.Editora, Imagem = x.Imagem, QuantPaginas = x.QuantPaginas, Criado_em = x.Criado_em, Autores = x.Autores})
                    .ToListAsync();
         }
 
@@ -36,6 +36,7 @@ namespace Livroteria_back.Repository
         {
 
             livro.Id = new Guid();
+            livro.DataPublicacao = DateTime.Now;
 
             await _dbcontext.Livros.AddAsync(livro);
             await _dbcontext.SaveChangesAsync();
