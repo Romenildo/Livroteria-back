@@ -16,6 +16,7 @@ namespace Livroteria_back.Models.Dtos
 
         public int? QuantPaginas { get; set; }
         public string? Editora { get; set; }
+        public string? DataPublicacao { get; set; }
 
         public int? Edicao { get; set; }
         public string? Imagem { get; set; }

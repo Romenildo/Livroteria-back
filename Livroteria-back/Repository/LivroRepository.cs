@@ -28,15 +28,21 @@ namespace Livroteria_back.Repository
         public async Task<List<LivroDto>> BuscarTodosLivros()
         {
             return await _dbcontext.Livros
-                   .Select(x => new LivroDto {Id = x.Id, Titulo = x.Titulo, SubTitulo = x.SubTitulo, Edicao = x.Edicao, Resumo = x.Resumo, Editora = x.Editora, Imagem = x.Imagem, QuantPaginas = x.QuantPaginas, Criado_em = x.Criado_em, Autores = x.Autores})
+                   .Select(x => new LivroDto {Id = x.Id, Titulo = x.Titulo, SubTitulo = x.SubTitulo, Edicao = x.Edicao, Resumo = x.Resumo, Editora = x.Editora, Imagem = x.Imagem, QuantPaginas = x.QuantPaginas, Criado_em = x.Criado_em,DataPublicacao = x.DataPublicacao.ToString(), Autores = x.Autores })
                    .ToListAsync();
         }
 
         public async Task<LivroDto> Adicionar(Livro livro)
         {
+            Livro livroBd = await _dbcontext.Livros.FirstOrDefaultAsync(x => x.Titulo == livro.Titulo && x.SubTitulo == livro.SubTitulo && x.Edicao == livro.Edicao && x.Editora == livro.Editora);
+
+            if (livroBd != null)
+            {
+                    throw new Exception("Livro Já cadastrado!");   
+            }
 
             livro.Id = new Guid();
-            livro.DataPublicacao = DateTime.Now;
+            livro.Criado_em = DateTime.Now;
 
             await _dbcontext.Livros.AddAsync(livro);
             await _dbcontext.SaveChangesAsync();
@@ -61,7 +67,7 @@ namespace Livroteria_back.Repository
 
             if (livroBd == null)
             {
-                throw new Exception($"Usuario com Id: {id} não encontrado!");
+                throw new Exception($"Livro com Id: {id} não encontrado!");
             }
             _dbcontext.Livros.Remove(livroBd);
             await _dbcontext.SaveChangesAsync();
