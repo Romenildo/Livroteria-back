@@ -24,13 +24,6 @@ namespace Livroteria_back.Controllers
             return resultado.Any() ? Ok(resultado) : BadRequest("Livros não encontrados");
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<LivroDto>> BuscarPorID(Guid id)
-        {
-            LivroDto resultado = await _livroRepository.BuscarPorID(id);
-            return resultado == null ? BadRequest() : Ok(resultado);
-        }
-
         [HttpPost]
         public async Task<ActionResult<LivroDto>> Cadastrar([FromBody] Livro Livro)
         {

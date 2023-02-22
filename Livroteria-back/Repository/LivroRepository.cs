@@ -18,17 +18,10 @@ namespace Livroteria_back.Repository
             _mapper = mapper;
         }
 
-        public async Task<LivroDto> BuscarPorID(Guid id)
-        {
-            var resultado = await _dbcontext.Livros.FirstOrDefaultAsync(x => x.Id == id);
-            var resultadoDto = _mapper.Map<LivroDto>(resultado);
-            return resultadoDto;
-        }
-
         public async Task<List<LivroDto>> BuscarTodosLivros()
         {
             return await _dbcontext.Livros
-                   .Select(x => new LivroDto {Id = x.Id, Titulo = x.Titulo, SubTitulo = x.SubTitulo, Edicao = x.Edicao, Resumo = x.Resumo, Editora = x.Editora, Imagem = x.Imagem, QuantPaginas = x.QuantPaginas, Criado_em = x.Criado_em,DataPublicacao = x.DataPublicacao.ToString(), Autores = x.Autores })
+                   .Select(x => new LivroDto {Id = x.Id, Titulo = x.Titulo, SubTitulo = x.SubTitulo, Edicao = x.Edicao, Resumo = x.Resumo, Editora = x.Editora, Imagem = x.Imagem, QuantPaginas = x.QuantPaginas, Criado_em = x.Criado_em,DataPublicacao = x.FormatarData(), Autores = x.Autores })
                    .ToListAsync();
         }
 
@@ -53,11 +46,43 @@ namespace Livroteria_back.Repository
 
         public async Task<LivroDto> Atualizar(Guid id, Livro livro)
         {
+            Livro livroBd = await _dbcontext.Livros.FirstOrDefaultAsync(x => x.Id == id);
+            
+            if (livroBd == null)
+            {
+                throw new Exception($"Livro com Id: {id} não encontrado!");
+            }
 
-            _dbcontext.Livros.Update(livro);
+            
+            while (true) {
+                Autor autorDel = await _dbcontext.Autores.FirstOrDefaultAsync(x => x.LivroId == id);
+                if (autorDel != null)
+                {
+                    _dbcontext.Autores.Remove(autorDel);
+                    await _dbcontext.SaveChangesAsync();
+                }
+                else {
+                    break;
+                }
+            }
+            
+            livroBd.Titulo = livro.Titulo;
+            livroBd.SubTitulo= livro.SubTitulo;
+            livroBd.Edicao = livro.Edicao;
+            livroBd.Resumo = livro.Resumo;
+            livroBd.DataPublicacao = livro.DataPublicacao;
+            livroBd.Editora= livro.Editora;
+            livroBd.QuantPaginas = livro.QuantPaginas;
+            livroBd.Autores = livro.Autores;
+            livroBd.Criado_em = DateTime.Now;
+            livroBd.Imagem= livro.Imagem;
+            livroBd.Autores = livro.Autores;
+            
+            
+            _dbcontext.Livros.Update(livroBd);
             await _dbcontext.SaveChangesAsync();
 
-            var resultadoDto = _mapper.Map<LivroDto>(livro);
+            var resultadoDto = _mapper.Map<LivroDto>(livroBd);
             return resultadoDto;
         }
 
