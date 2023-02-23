@@ -2,10 +2,10 @@
 
 <h1 align="center" > Sobre o Desafio </h1>
 <p align="center">
- Desenvolver um sistema de gerenciamento de livros que atenda as necessidades e ajude a livraria a se modernizar as novas tencologias online. O Atual problema da livraria que possui um grande estoque de livros, que não estão cadastrados em nenhum sistema, o que dificulda a identificação dos livros disponiveis e quais precisam de reposição. O sistema vem para permitir que a livraria gerencia melhor o seu estoque na forma de cadastrar novos livros, atualização dos livros cadastrados, exclusão de livros, e busca por diversos criérios como titulo, autor, editora, edição entre outros.
+ Desenvolver um sistema de gerenciamento de livros que atenda as necessidades e ajude a livraria a se modernizar as novas tencologias online. O Atual problema da livraria que possui um grande estoque de livros, os quais não estão cadastrados em nenhum sistema, o que dificulda a identificação dos livros disponiveis e quais precisam de reposição. O sistema vem para permitir que a livraria gerencia melhor o seu estoque na forma de cadastrar novos livros, atualização dos livros cadastrados, exclusão de livros, e busca por diversos criérios como titulo, autor, editora, edição entre outros.
 </p>
 
-<h1 align="center" > Apicação </h1>
+<h1 align="center" > Aplicação </h1>
 
  ###  Desenvolvimento da API utilizando dotnet 6 com Swagger, acesso ao banco de dados SQLServer com Entity Framework.
 <p align="center">
@@ -15,19 +15,19 @@
   ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
  </p>
 
-A aplicação Consiste em duas Entidades Livros e Autores, onde Livro possui uma Lista de autores com uma ligação de um para muitos. Os atributos do Livro é mostrado na tabela abaixo, o mesmo possui seu repositorio e controller com as principais funcoes de uma API como cadastrar, Atualizar, Remover e pegar todos. O qual se comunica com a aplicação do front desenvolvida em Angular [aqui](https://github.com/Romenildo/Livroteria).
+A aplicação Consiste em duas entidades <b>Livros</b> e <b>Autores</b>, onde Livro possui uma Lista de autores com uma ligação de um para muitos. Os atributos do Livro é mostrado na tabela abaixo, o mesmo possui seu repositório e controller com as principais funções de uma API como cadastrar, atualizar, remover e pegar todos. O qual se comunica com a aplicação do front desenvolvida em Angular [aqui](https://github.com/Romenildo/Livroteria).
 
 
 <h1 align="center" > Como executar a aplicação</h1>
 
-Os recursos necessários são uma IDE para executar o codigo como o Visual Studio e o banco de dados que na aplicação é o SQL Server, e casoq ueria visualizar melhor a estrutura do banco de dados utiliza-se um gerenciador como SQL management.
+Os recursos necessários são uma IDE para executar o codigo como o Visual Studio e o banco de dados que na aplicação é o SQL Server, e caso queria visualizar melhor a estrutura do banco de dados utiliza-se um gerenciador como SQL management.
    
 - [Visual Studio ](https://visualstudio.microsoft.com/pt-br/downloads/)
 - [Sql Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)   
 - [SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
 
 
-Para baixar a aplicação na sua maquina pode ser feito baixando pelo proprio github ou pelo seguinte comando:
+Para baixar a aplicação na sua máquina pode ser feito baixando pelo próprio github ou pelo seguinte comando:
 ```sh
 git clone https://github.com/Romenildo/Livroteria-back.git
 ```
