@@ -7,9 +7,12 @@ namespace Livroteria_back.Models
     {
         [JsonIgnore]
         public Guid Id { get; set; }
+
         public string? Nome { get; set; }
+
         [JsonIgnore]
         public Guid? LivroId { get; set; }
+
         [JsonIgnore]
         public Livro? Livro { get; set; }
     }

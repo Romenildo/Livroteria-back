@@ -53,7 +53,7 @@ namespace Livroteria_back.Repository
                 throw new Exception($"Livro com Id: {id} não encontrado!");
             }
 
-            
+            //eh
             while (true) {
                 Autor autorDel = await _dbcontext.Autores.FirstOrDefaultAsync(x => x.LivroId == id);
                 if (autorDel != null)

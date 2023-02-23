@@ -12,7 +12,6 @@ namespace Livroteria_back.Data.Map
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(50);
             builder.HasOne(x => x.Livro).WithMany(x => x.Autores);
 
-
         }
     }
 }

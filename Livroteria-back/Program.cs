@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
@@ -21,6 +20,7 @@ builder.Services.AddDbContext<DataContext>(
 //injecoes de dependencias
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 
+//cors
 builder.Services.AddCors(opt => {
     opt.AddPolicy("CorsPolicy", builder => builder
     .AllowAnyOrigin()
