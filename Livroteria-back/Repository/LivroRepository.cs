@@ -52,20 +52,9 @@ namespace Livroteria_back.Repository
             {
                 throw new Exception($"Livro com Id: {id} não encontrado!");
             }
+            _dbcontext.Livros.Remove(livroBd);
+            await _dbcontext.SaveChangesAsync();
 
-            //eh
-            while (true) {
-                Autor autorDel = await _dbcontext.Autores.FirstOrDefaultAsync(x => x.LivroId == id);
-                if (autorDel != null)
-                {
-                    _dbcontext.Autores.Remove(autorDel);
-                    await _dbcontext.SaveChangesAsync();
-                }
-                else {
-                    break;
-                }
-            }
-            
             livroBd.Titulo = livro.Titulo;
             livroBd.SubTitulo= livro.SubTitulo;
             livroBd.Edicao = livro.Edicao;
@@ -79,7 +68,7 @@ namespace Livroteria_back.Repository
             livroBd.Autores = livro.Autores;
             
             
-            _dbcontext.Livros.Update(livroBd);
+            await _dbcontext.Livros.AddAsync(livroBd);
             await _dbcontext.SaveChangesAsync();
 
             var resultadoDto = _mapper.Map<LivroDto>(livroBd);

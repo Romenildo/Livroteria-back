@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace Livroteria_back.Models
@@ -31,7 +32,6 @@ namespace Livroteria_back.Models
         public string? Imagem { get; set; }
         [JsonIgnore]
         public DateTime? Criado_em { get; set; }
-
         public ICollection<Autor>? Autores { get; set; }
 
         public string FormatarData() {
